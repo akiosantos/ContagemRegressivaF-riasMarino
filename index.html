@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contagem Regressiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      width: 80px;
+    }
+
+    .time {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .label {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Contagem Regressiva</h1>
+    <h1>Férias Marino</h1>
+    <div class="countdown">
+      <div class="time-box">
+        <div id="days" class="time">0</div>
+        <div class="label">Dias</div>
+      </div>
+      <div class="time-box">
+        <div id="hours" class="time">0</div>
+        <div class="label">Horas</div>
+      </div>
+      <div class="time-box">
+        <div id="minutes" class="time">0</div>
+        <div class="label">Minutos</div>
+      </div>
+      <div class="time-box">
+        <div id="seconds" class="time">0</div>
+        <div class="label">Segundos</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 🔥 DEFINA A DATA AQUI
+    const targetDate = new Date("2026-04-30T17:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.querySelector(".container").innerHTML = "<h1>Chegou o grande dia! 🎉</h1>";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    // Atualiza a cada segundo
+    setInterval(updateCountdown, 1000);
+
+    // Atualiza imediatamente ao carregar
+    updateCountdown();
+  </script>
+
+</body>
+</html>
